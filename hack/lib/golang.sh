@@ -25,6 +25,7 @@ readonly KUBE_SUPPORTED_SERVER_PLATFORMS=(
   linux/arm64
   linux/s390x
   linux/ppc64le
+  linux/mips64le
 )
 
 # The node platforms we build for
@@ -34,6 +35,7 @@ readonly KUBE_SUPPORTED_NODE_PLATFORMS=(
   linux/arm64
   linux/s390x
   linux/ppc64le
+  linux/mips64le
   windows/amd64
 )
 
@@ -46,6 +48,7 @@ readonly KUBE_SUPPORTED_CLIENT_PLATFORMS=(
   linux/arm64
   linux/s390x
   linux/ppc64le
+  linux/mips64le
   darwin/amd64
   darwin/386
   windows/amd64
@@ -60,6 +63,7 @@ readonly KUBE_SUPPORTED_TEST_PLATFORMS=(
   linux/arm64
   linux/s390x
   linux/ppc64le
+  linux/mips64le
   darwin/amd64
   windows/amd64
 )
@@ -413,6 +417,10 @@ kube::golang::set_platform_envs() {
       "linux/s390x")
         export CGO_ENABLED=1
         export CC=s390x-linux-gnu-gcc
+        ;;
+      "linux/mips64le")
+        export CGO_ENABLED=1
+        export CC=mips64el-linux-gnuabi64-gcc-5
         ;;
     esac
   fi
